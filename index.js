@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const path = require("path");
 const database = require("./db/db");
 const usersRoutes = require("./routes/users");
@@ -12,6 +12,7 @@ app.use(express.static("uploads"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
+
 database
   .sync()
   .then(() => {
@@ -24,14 +25,15 @@ database
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "/view/index.html"));
 });
+
 app.get("/index_peserta", function (req, res) {
   res.sendFile(path.join(__dirname, "/view/index_peserta.html"));
 });
 
-
 app.get("/tambah", function (req, res) {
   res.sendFile(path.join(__dirname, "/view/tambah.html"));
 });
+
 app.get("/tambah_peserta", function (req, res) {
   res.sendFile(path.join(__dirname, "/view/tambah_peserta.html"));
 });
@@ -39,15 +41,14 @@ app.get("/tambah_peserta", function (req, res) {
 app.get("/edit/:id", function (req, res) {
   res.sendFile(path.join(__dirname, "/view/edit.html"));
 });
+
 app.get("/edit_peserta/:id", function (req, res) {
   res.sendFile(path.join(__dirname, "/view/edit_peserta.html"));
 });
 
-//routes
+// Routes
 app.use('/users', usersRoutes);
 app.use('/peserta', pesertaRoutes);
 
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+// Export the app for Vercel
+module.exports = app;
