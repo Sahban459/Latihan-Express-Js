@@ -1,0 +1,23 @@
+{
+  "name": "latihan-express-js",
+  "version": "1.0.0",
+  "description": "Ini adalah Latihan Express Js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "Express",
+    "js"
+  ],
+  "author": "Sahban",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.1",
+    "mysql2": "^3.11.0",
+    "nodemon": "^3.1.4",
+    "sequelize": "^6.37.3"
+  }
+}
